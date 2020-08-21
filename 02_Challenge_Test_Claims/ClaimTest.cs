@@ -9,7 +9,8 @@ namespace _02_Challenge_Test_Claims
     {
         [TestMethod]
         public void ClaimInitalization()
-        { DateTime dateInc = new DateTime(2019, 01, 01);
+        { 
+            DateTime dateInc = new DateTime(2019, 01, 01);
           DateTime dateClaim = new DateTime(2019, 01, 01);
           Claim claim = new Claim(4, Claim.ClaimType.Car, "crash on 161st", 200, dateInc, dateClaim);
 
@@ -54,18 +55,22 @@ namespace _02_Challenge_Test_Claims
             Assert.AreEqual(2, claimTwo.ClaimID);
         }
 
-        public void DeleteItem_ShouldGetCorrectClaim()
+        [TestMethod]
+        public void DeleteItem_ShouldDeleteCorrectClaim()
         {
             var insurance = new ClaimRepository();
             DateTime dateInc = new DateTime(2019, 01, 01);
             DateTime dateClaim = new DateTime(2019, 01, 01);
             Claim claim = new Claim(1, Claim.ClaimType.Car, "crash on 161st", 200, dateInc, dateClaim);
             Claim claimTwo = new Claim(2, Claim.ClaimType.Home, "crash on 161st", 200, dateInc, dateClaim);
+            
+            insurance.AddClaim(claimTwo);
             insurance.AddClaim(claim);
 
-            insurance.UpdateItem(1, claimTwo);
+            insurance.DeleteClaim(claimTwo);
 
-            Assert.AreEqual(2, claimTwo.ClaimID);
+            
+            Assert.IsNull(insurance.GetItemByID(2));
         }
     }
 }

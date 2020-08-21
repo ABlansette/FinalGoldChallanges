@@ -85,7 +85,7 @@ namespace _02_Challenge
 
         private void SeeAllClaims()
         {
-            Console.WriteLine("ClaimId\t" + "Type\t" + "Description\t\t" + "Amount\t" + "DateOfAccident\t" + "\tDateOfClaim");
+            Console.WriteLine("ClaimId\t" + "Type\t" + "Description\t\t" + "Amount\t" + "DateOfAccident\t" + "\tDateOfClaim \t" + "\tisValid");
             List<Claim> listOfClaims = _claimRepo.GetclaimsInDirectory();
             foreach (Claim item in listOfClaims)
             {
@@ -228,6 +228,9 @@ namespace _02_Challenge
             DateTime crashIncident = new DateTime(2019, 01, 02);
             DateTime crashClaim = new DateTime(2019, 01, 01);
             Claim Crash = new Claim(1, ClaimType.Car, "Crash on 161st", 1000, crashIncident, crashClaim);
+
+
+
             DateTime housefireIncident = new DateTime(2019, 01, 02);
             DateTime houseFireClaim = new DateTime(2019, 01, 01);
             Claim HouseFire = new Claim(2, ClaimType.Home, "oven fire", 3456, housefireIncident, houseFireClaim);

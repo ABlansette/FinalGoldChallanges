@@ -26,7 +26,7 @@ namespace _01_Challenge_Test_KomodoCafe
             Assert.AreEqual("6", newItem.MealNumber);
             Assert.AreEqual("Tasty", newItem.Description);
         }
-
+        [TestMethod]
         public void GetItemByName_ShouldGetCorrectItem()
         {
             //Arrange
@@ -54,6 +54,47 @@ namespace _01_Challenge_Test_KomodoCafe
 
             //Assert
             Assert.AreEqual(salad, specificItem);
+        }
+        [TestMethod]
+        public void UpdateItem_ShouldGetUpdatedItem()
+        {
+            var cafe = new MenuItemsRepository();
+            List<string> dogIng = new List<string>();
+            dogIng.Add("Bun");
+            dogIng.Add("Dog");
+            MenuItems dog = new MenuItems("Dog", "7", "Tasty", 5.99m, dogIng);
+            List<string> saladIng = new List<string>();
+            saladIng.Add("Leafs");
+            saladIng.Add("GingerSauce");
+            MenuItems salad = new MenuItems("Salad", "8", "MostTasty", 5.99m, saladIng);
+
+
+            cafe.AddItemsToDirectory(dog);
+            cafe.UpdateExistingItemsInDirectory("dog", salad);
+
+            Assert.IsNotNull(cafe.GetItemByName("Salad"));
+
+        }
+
+        [TestMethod]
+        public void DeleteItem_ShouldGetDeletedItem()
+        {
+            var cafe = new MenuItemsRepository();
+            List<string> dogIng = new List<string>();
+            dogIng.Add("Bun");
+            dogIng.Add("Dog");
+            MenuItems dog = new MenuItems("Dog", "7", "Tasty", 5.99m, dogIng);
+            List<string> saladIng = new List<string>();
+            saladIng.Add("Leafs");
+            saladIng.Add("GingerSauce");
+            MenuItems salad = new MenuItems("Salad", "8", "MostTasty", 5.99m, saladIng);
+
+
+            cafe.AddItemsToDirectory(dog);
+            cafe.DeleteItemByName("dog");
+
+            Assert.IsNull(cafe.GetItemByName("dog"));
+
         }
     }
 }

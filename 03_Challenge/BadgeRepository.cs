@@ -62,7 +62,7 @@ namespace _03_Challenge
             doorAccessDictionary.Remove(newBadge.BadgeID);
         }
 
-        public void DeleteClaimByID(int id)
+        public void DeleteBadgeByID(int id)
         {
             Badge targetBadge = GetBadgeByID(id);
             DeleteBadge(targetBadge);
